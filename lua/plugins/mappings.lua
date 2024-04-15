@@ -21,8 +21,17 @@ return {
           -- this is useful for naming menus
           ["<Leader>b"] = { name = "Buffers" },
           -- quick save
-          ["<leader><Up>"] = { ":m-2<Enter>", desc = "Move line up" },
-          ["<leader><Down>"] = { ":m+<Enter>", desc = "Move line down" },
+          ["<leader><Up>"] = { 
+            function()
+              vim.api.nvim_command(":m-" .. vim.fn.input("How many lines to move up (add one extra)? ") .. "<Enter>")
+            end,
+            desc = "Move line up" },
+          ["<leader><Down>"] = {
+            function()
+              vim.api.nvim_command(":m+" .. vim.fn.input("How many lines to move down? ") .. "<Enter>")
+            end,
+            desc="Move line down"
+          },
           -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
         },
         t = {
@@ -30,8 +39,18 @@ return {
           -- ["<esc>"] = false,
         },
         v = {
-          ["<leader><Up>"] = { ":m '<-2<Enter>", desc = "Move line up" },
-          ["<leader><Down>"] = { ":m '>+1<Enter>", desc = "Move line down" },
+          ["<leader><Up>"] = {
+            function()
+              vim.api.nvim_command(":m-" .. vim.fn.input("How many lines to move selection up (add one line extra)? ") .. "<Enter>")
+            end,
+            desc="Move selected lines up"
+          },
+          ["<leader><Down>"] = {
+            function()
+              vim.api.nvim_command(":m+" .. vim.fn.input("How many lines to move selection down? ") .. "<Enter>")
+            end,
+            desc="Move selected lines down"
+          },
         },
       },
     },
