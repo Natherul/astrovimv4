@@ -21,7 +21,7 @@ return {
           -- this is useful for naming menus
           ["<Leader>b"] = { name = "Buffers" },
           -- quick save
-          ["<leader><Up>"] = { 
+          ["<leader><Up>"] = {
             function()
               vim.api.nvim_command(":m-" .. vim.fn.input("How many lines to move up (add one extra)? ") .. "<Enter>")
             end,
